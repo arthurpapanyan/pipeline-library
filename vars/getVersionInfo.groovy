@@ -10,5 +10,6 @@ class ScriptSourceUri {
 
 def call() {
     Path scriptLocation = Paths.get(ScriptSourceUri.uri)
+    echo(scriptLocation.getParent().getParent().resolve('resources').toString())
     return scriptLocation.getParent().getParent().resolve('resources').toString()
 }
