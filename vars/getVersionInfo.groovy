@@ -10,7 +10,7 @@ class ScriptSourceUri {
 
 def call() {
     Path scriptLocation = Paths.get(ScriptSourceUri.uri)
-    echo()
+    echo(scriptLocation.getParent().getParent().resolve('resources/config.json').toString())
     def props = readJSON file: scriptLocation.getParent().getParent().resolve('resources/config.json').toString()
     return props
 }
