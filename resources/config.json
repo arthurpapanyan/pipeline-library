@@ -1,0 +1,23 @@
+{
+    "applicationName": "Testing Next",
+    "version": "1.0",
+    "applicationEnvironment": "release",
+    "github-base": "git@github.com:microsoft-com/",
+        "application": {
+            "frontend": {
+                "ucraft-react": {
+                    "services": [
+                        {
+                            "name": "accounts",
+                            "version": "1.0.1"
+                        }
+                    ]
+                }
+            }
+        },
+        "infrastructure": {
+            "helm": {
+                "version": "1.0.1"
+            }
+        }
+}
