@@ -3,10 +3,19 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
         stages {
-            stage('checkout git') {
+            stage('Build') {
                 steps {
                     script{
                         println(pipelineParams)
+                        sh(pipelineParams.buildCommand)
+                    }
+                }
+            }
+            stage('Test') {
+                steps {
+                    script{
+                        println(pipelineParams)
+                        sh(pipelineParams.testCommand)
                     }
                 }
             }
