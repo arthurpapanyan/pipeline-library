@@ -1,18 +1,53 @@
-def call(body) {
-    def pipelineParams= [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = pipelineParams
-    body()
-pipeline {
-    agent any
+def call(Map pipelineParams) {
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello Inner'
+    pipeline {
+        agent any
+        stages {
+            stage('checkout git') {
+                steps {
+                    script{
+                        println(pipelineParams)
+                    }
+                }
             }
-        }
-    }
-}
 
+            // stage('build') {
+            //     steps {
+            //         sh 'mvn clean package -DskipTests=true'
+            //     }
+            // }
+
+            // stage ('test') {
+            //     steps {
+            //         parallel (
+            //             "unit tests": { sh 'mvn test' },
+            //             "integration tests": { sh 'mvn integration-test' }
+            //         )
+            //     }
+            // }
+
+            // stage('deploy developmentServer'){
+            //     steps {
+            //         deploy(pipelineParams.developmentServer, pipelineParams.serverPort)
+            //     }
+            // }
+
+            // stage('deploy staging'){
+            //     steps {
+            //         deploy(pipelineParams.stagingServer, pipelineParams.serverPort)
+            //     }
+            // }
+
+            // stage('deploy production'){
+            //     steps {
+            //         deploy(pipelineParams.productionServer, pipelineParams.serverPort)
+            //     }
+            // }
+        }
+        // post {
+        //     failure {
+        //         mail to: pipelineParams.email, subject: 'Pipeline failed', body: "${env.BUILD_URL}"
+        //     }
+        // }
+    }
 }
