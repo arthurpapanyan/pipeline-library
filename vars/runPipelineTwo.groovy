@@ -63,11 +63,11 @@ def call(Map pipelineParams) {
               when{
                   expression{
                     pipelineParams.deployTo
-                  }
+                  } 
               }
               steps{
                 script{
-                  echo("make deploy ENVIRONMENT=${pipelineParams.testCommand} HELM_VERSION=${pipelineParams.chartVersion}")
+                  echo("make deploy ENVIRONMENT=${pipelineParams.deployTo} HELM_VERSION=${pipelineParams.chartVersion}")
                   
                 }
               }
