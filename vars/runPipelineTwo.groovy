@@ -67,7 +67,7 @@ def call(Map pipelineParams) {
               }
               steps{
                 script{
-                  echo(pipelineParams.testCommand)
+                  echo("make deploy ENVIRONMENT=${pipelineParams.testCommand} HELM_VERSION=${CHART_VERSION}")
                   
                 }
               }
