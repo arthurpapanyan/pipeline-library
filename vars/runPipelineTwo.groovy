@@ -62,13 +62,13 @@ def call(Map pipelineParams) {
             stage('Deploy'){
               when{
                   expression{
-                    pipelineParams.deployTo
+                    pipelineParams.deploymentMap
                   } 
               }
               steps{
                 script{
-                    echo(pipelineParams.deployTo.get("master"))
-                  echo("make deploy ENVIRONMENT=${pipelineParams.deployTo} HELM_VERSION=${pipelineParams.chartVersion}")
+                    echo(pipelineParams.deploymentMap.get("master"))
+                  echo("make deploy ENVIRONMENT=${pipelineParams.deploymentMap} HELM_VERSION=${pipelineParams.chartVersion}")
                   
                 }
               }
